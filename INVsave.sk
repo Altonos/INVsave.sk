@@ -1,0 +1,23 @@
+on death of player:
+	set {inventory.%player%::*} to items in the player's inventory
+	set {level.%player%} to player's level
+	log "%player%'s inventory included: %{inventory.%player%::*}% and lost %{level.%player%}% level" to "Inventar.log"
+
+command /inv [<offlineplayer>]:
+	permission: sk.inv
+	trigger:
+		send "&7Player had %{inventory.%player%::*}%."
+		send "&7Player had %{level.%player%}% level."
+
+
+command /InvGet <offlineplayer>:
+	permission: sk.inventory
+	trigger:
+		set player's inventory to {inventory.%player%::*}
+
+
+command /InvGive <player>:
+	permission: sk.inventory
+	trigger:
+		set argument 1's inventory to {inventory.%arg%::*}
+		set argument 1's inventory to {level.%arg%::*}
